@@ -46,19 +46,20 @@ module top(input  logic clk_2,
     controller <= SWI[5:0];
     classifier <= SWI[7];
     
-    if (classifier)begin
-    	case (notas[3:0])
-    	  0: SEG[6:0] <= 7'b0111111;
-          1: SEG[6:0] <= 7'b0111111;
-          2: SEG[6:0] <= 7'b0111111;
-          3: SEG[6:0] <= 7'b0111111;
-          4: SEG[6:0] <= 7'b1110001;
-          5: SEG[6:0] <= 7'b1110001;
-          6: SEG[6:0] <= 7'b1110001;
-          7: SEG[6:0] <= 7'b1110111;
-          8: SEG[6:0] <= 7'b1110111;
-          9: SEG[6:0] <= 7'b1110111;
-          10: SEG[6:0] <= 7'b1110111;
+   if (classifier)begin
+    	case (controller[5:0])
+    		//classificação do aluno se foi aprovado, está na final ou perdeu a disciplina
+    	  0: SEG[6:0] <= 7'b1110011;//P = perdeu
+          1: SEG[6:0] <= 7'b1110011;//P
+          2: SEG[6:0] <= 7'b1110011;//P
+          3: SEG[6:0] <= 7'b1110011;//P
+          4: SEG[6:0] <= 7'b1110001;//F = final 
+          5: SEG[6:0] <= 7'b1110001;//F
+          6: SEG[6:0] <= 7'b1110001;//F
+          7: SEG[6:0] <= 7'b1110111;//A = aprovado
+          8: SEG[6:0] <= 7'b1110111;//A
+          9: SEG[6:0] <= 7'b1110111;//A
+          10: SEG[6:0] <= 7'b1110111;//A
           default: SEG[6:0] <= 7'b1000000;  // -
           endcase
     	end 
@@ -117,7 +118,4 @@ module top(input  logic clk_2,
 
   end
   
-  	 
-  	 
-
 endmodule
